@@ -55,7 +55,9 @@ int main(void) {
 	tree[8]->left_ptr = NULL;
 	tree[8]->right_ptr = NULL;
 
+	//Inorder
 	inorder(tree[0]);
+
 
 	return 0;
 }
