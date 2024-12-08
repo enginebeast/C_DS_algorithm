@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h> 
 
@@ -7,8 +8,8 @@ typedef struct node {
 }list_node;
 
 
-void push(list_node** queue_front, list_node** queue_rear, int num);
-void pop(list_node** queue_front);
+void enqueue(list_node** queue_front, list_node** queue_rear, int num);
+void dequeue(list_node** queue_front);
 
 
 int main(void) {
@@ -23,16 +24,16 @@ int main(void) {
 		printf("Please input command: ");
 		scanf(" %c", &action);
 
-		//Push
+		//Enqueue
 		if(action == 'I'){
 			printf("Please input integer: ");
 			scanf("%d", &num);
-			push(&queue_front, &queue_rear, num);
+			enqueue(&queue_front, &queue_rear, num);
 		}
 
-		//POP
+		//Dequeue
 		else if(action == 'O'){
-			pop(&queue_front);
+			dequeue(&queue_front);
 		}
 
 		//Exit
@@ -50,7 +51,9 @@ int main(void) {
 	return 0;
 }
 
-void push(list_node** queue_front, list_node** queue_rear, int num) {
+
+//udf
+void enqueue(list_node** queue_front, list_node** queue_rear, int num) {
 	list_node* new_ptr = (list_node*)malloc(sizeof(list_node));
 	new_ptr->data = num;
 	new_ptr->link = NULL;
@@ -65,7 +68,7 @@ void push(list_node** queue_front, list_node** queue_rear, int num) {
 	*queue_rear = new_ptr;
 }
 
-void pop(list_node** queue_front) {
+void dequeue(list_node** queue_front) {
 	//Exeption
 	if (*queue_front == NULL) {
 		printf("Queue is empty!\n");
