@@ -12,7 +12,9 @@ typedef tree_node* tree_ptr;
 
 
 //udf
+void preorder(tree_ptr ptr);
 void inorder(tree_ptr ptr);
+void postorder(tree_ptr ptr);
 
 
 int main(void) {
@@ -55,19 +57,49 @@ int main(void) {
 	tree[8]->left_ptr = NULL;
 	tree[8]->right_ptr = NULL;
 
-	//Inorder
-	inorder(tree[0]);
+	//Input command
+	int command;
+	printf("1 is preorder traversal, 2 is inorder traversal, and 3 is postorder traversal.\n");
+	printf("Please input the type of traversal: ");
+	scanf("%d", &command);
 
+	//Preorder
+	if(command == 1)
+		preorder(tree[0]);
+
+	//Inorder
+	else if(command == 2)
+		inorder(tree[0]);
+
+	//Postorder
+	else if(command == 3)
+		postorder(tree[0]);
 
 	return 0;
 }
 
 
 //udf
+void preorder(tree_ptr ptr) {
+	if (ptr) {
+		printf("%c", ptr->data);
+		preorder(ptr->left_ptr);
+		preorder(ptr->right_ptr);
+	}
+}
+
 void inorder(tree_ptr ptr) {
 	if (ptr) {
 		inorder(ptr->left_ptr);
 		printf("%c", ptr->data);
 		inorder(ptr->right_ptr);
+	}
+}
+
+void postorder(tree_ptr ptr) {
+	if (ptr) {
+		postorder(ptr->left_ptr);
+		postorder(ptr->right_ptr);
+		printf("%c", ptr->data);
 	}
 }
