@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="traversal.c">
+    <ClCompile Include="printGraph.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
