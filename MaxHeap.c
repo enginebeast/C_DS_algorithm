@@ -70,5 +70,20 @@ void insertHeap(int num) {
 }
 
 void deleteHeap(void) {
-	
+	int parent = 1, child = 2;
+	heap[parent] = heap[tail--];
+	int temp;
+	while (child <= tail) {
+		//Compare siblings
+		if (child < tail && heap[child]<heap[child+1]) 
+			child++;
+		//Compare parent with child
+		if (heap[parent] > heap[child])
+			break;
+		temp = heap[parent];
+		heap[parent] = heap[child];
+		heap[child] = temp;
+		parent = child;
+		child *= child;
+	}
 }
