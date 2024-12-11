@@ -35,14 +35,14 @@ int main(void) {
 			printf("Please input right command!\n");
 	}
 
-	int flag1 = 1, flag2 = 0;
+	int nodeNum = 1, levelEnd = 0;
 	printf("This is the max heap inserted.\n");
 	for (int i = 0; i <= tail; i++) {
 		printf("%d ", heap[i]);
-		if (flag2 == i) {
+		if (levelEnd == i) {
 			printf("\n");
-			flag1 = flag1 * 2;
-			flag2 += flag1;
+			nodeNum = nodeNum * 2;
+			levelEnd += nodeNum;
 		}
 	}
 
