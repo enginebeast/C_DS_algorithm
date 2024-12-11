@@ -6,11 +6,13 @@
 #define HEAP_MAX_SIZE 1000
 
 int heap[HEAP_MAX_SIZE] = { 0 }; 
-int tail = -1;
+int tail = 0;
 
 
 //udf
-void insertMaxHeap(int num);
+void insertHeap(int num);
+void deleteHeap(void);
+
 
 
 int main(void) {
@@ -23,8 +25,12 @@ int main(void) {
 			int num;
 			printf("Please input number: ");
 			scanf("%d", &num);
-			insertMaxHeap(num);
+			insertHeap(num);
 		}
+
+		//Delete
+		else if (command == 'D') 
+			deleteHeap();
 
 		//Exit
 		else if (command == 'E')
@@ -35,9 +41,9 @@ int main(void) {
 			printf("Please input right command!\n");
 	}
 
-	int nodeNum = 1, levelEnd = 0;
+	int nodeNum = 1, levelEnd = 1;
 	printf("This is the max heap inserted.\n");
-	for (int i = 0; i <= tail; i++) {
+	for (int i = 1; i <= tail; i++) {
 		printf("%d ", heap[i]);
 		if (levelEnd == i) {
 			printf("\n");
@@ -51,14 +57,18 @@ int main(void) {
 }
 
 //UDF
-void insertMaxHeap(int num) {
+void insertHeap(int num) {
 	int i = ++tail;
 	heap[i] = num;
 	int temp;
-	while (i != 0 && heap[i] > heap[(i - 1) / 2]) {
-		temp = heap[(i - 1) / 2];
-		heap[(i - 1) / 2] = heap[i];
+	while (i != 1 && heap[i] > heap[i / 2]) {
+		temp = heap[i / 2];
+		heap[i / 2] = heap[i];
 		heap[i] = temp;
-		i = (i - 1) / 2;
+		i = i / 2;
 	}
+}
+
+void deleteHeap(void) {
+	
 }
