@@ -4,6 +4,9 @@
 
 
 //Data structure
+#define TREE_MAX_SIZE 1000
+#define IS_EMPTY(ptr) (!ptr)
+
 typedef struct tree_node {
 	int data;
 	struct tree_node* left_ptr, * right_ptr;
@@ -13,6 +16,8 @@ typedef tree_node* tree_ptr;
 
 //udf
 tree_ptr search(tree_ptr tree, int key);
+tree_ptr modified_search(tree_ptr tree, int key);
+void insert(tree_ptr node, int num);
 
 
 int main(void) {
@@ -56,27 +61,87 @@ int main(void) {
 	tree[8]->left_ptr = NULL;
 	tree[8]->right_ptr = NULL;
 
-	int n;
-	printf("Please input a search key: ");
-	scanf("%d", &n);
-	if (search(tree[0], n))
-		printf("%d is exist in the tree.\n", n);
-	else
-		printf("%d is not exist in the tree.\n", n);
+	//Data processing
+	char command;
+	while (1) {
+		printf("Please input a command: ");
+		scanf(" %c", &command);
+
+		//Search
+		if (command == 'S') {
+			int n;
+			printf("Please input a search key: ");
+			scanf("%d", &n);
+			if (search(tree[0], n))
+				printf("%d is exist in the tree.\n", n);
+			else
+				printf("%d is not exist in the tree.\n", n);
+		}
+
+		//Insert
+		else if (command == 'I') {
+			int n;
+			printf("Please input a integer: ");
+			scanf("%d", &n);
+			insert(&tree[0], n);
+		}
+
+		//Exit
+		else if (command == 'E')
+			break;
+		
+		//Exception
+		else {
+			printf("Please input a right command.\n");
+		}
+	}
 
 	return 0;
 }
 
 
 //UDF
-tree_ptr search(tree_ptr tree, int key) {
-	while (tree) {
-		if (key == tree->data)
-			return tree;
-		else if (key < tree->data)
-			tree = tree->left_ptr;
+tree_ptr search(tree_ptr node, int key) {
+	while (node) {
+		if (key == node->data)
+			return node;
+		else if (key < node->data)
+			node = node->left_ptr;
 		else
-			tree = tree->right_ptr;
+			node = node->right_ptr;
 	}
 	return NULL;
+}
+
+tree_ptr modified_search(tree_ptr node, int key) {
+	tree_ptr parent = NULL;
+	while (node) {
+		if (key == node->data)
+			return NULL;
+		
+		parent = node;
+		if (key < node->data)
+			node = node->left_ptr;
+		else
+			node = node->right_ptr;
+	}
+	return parent;
+}
+
+void insert(tree_ptr *node, int num) {
+	tree_ptr temp = modified_search(*node, num);
+	if (temp || !(*node)) {
+		tree_node* new_node = (tree_node*)malloc(sizeof(tree_node));
+		new_node->data = num;
+		new_node->left_ptr = NULL;
+		new_node->right_ptr = NULL;
+		if (*node) {
+			if (num < temp->data)
+				temp->left_ptr = new_node;
+			else
+				temp->right_ptr = new_node;
+		}
+		else
+			*node = new_node;
+	}
 }
