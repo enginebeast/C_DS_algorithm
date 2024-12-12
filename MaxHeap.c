@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 //Data structure
-#define HEAP_MAX_SIZE 5
+#define HEAP_MAX_SIZE 1000
 #define HEAP_FULL(n) (n == HEAP_MAX_SIZE - 1)
 #define HEAP_EMPTY(n) (!n)
 
