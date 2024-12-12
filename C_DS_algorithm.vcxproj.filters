@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MaxHeap.c">
+    <ClCompile Include="binSearchTree.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
