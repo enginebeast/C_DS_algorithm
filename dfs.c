@@ -27,8 +27,8 @@ int main(void) {
 	printf("Please input the number of vertices: ");
 	scanf("%d", &vertexNum);
 	printf("Please input the number of edges: ");
-	scanf("%d", &edgeNum); 
-	
+	scanf("%d", &edgeNum);
+
 	int u, v;
 	for (int i = 0; i < edgeNum; i++) {
 		printf("Please input the two linked vertices: ");
@@ -36,7 +36,7 @@ int main(void) {
 		insertEdge(u, v);
 		insertEdge(v, u);
 	}
-	
+
 	//dfs
 	printf("It starts dfs.\n");
 	printf("Please input the starting vortex: ");
@@ -63,7 +63,7 @@ void insertEdge(int u, int v) {
 
 void dfs(int v) {
 	visited[v] = 1;
-	printf(" %d", v);
+	printf("%d ", v);
 	for (node_ptr w = graph[v]; w; w = w->link) {
 		if (!visited[w->data])
 			dfs(w->data);
