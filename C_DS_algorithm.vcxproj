@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="array.c" />
-    <ClCompile Include="main.c" />
+    <ClCompile Include="tester.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="array.h" />
