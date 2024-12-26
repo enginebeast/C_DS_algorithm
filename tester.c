@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include "array.h"	//swap, bubbleSort
+#include "array.h"	//swap, bubbleSort, selectSort
 
 //udf
 
@@ -15,11 +15,12 @@ int main(void) {
 		fscanf(fp, "%d", &array[i]);
 
 	//Sort and print
-	bubbleSort(N, array);
+	selectSort(N, array);
 	for (int i = 0; i < N; i++)
 		printf("%d ", array[i]);
 
 	return 0;
 }
+
 
 //UDF
