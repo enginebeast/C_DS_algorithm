@@ -3,14 +3,11 @@
 #include <stdlib.h>
 #include "list.h"
 
-//List node structure
-
-
 //udf
 
 
 int main(void) {
-	Stack* stack = createStack();
+	Queue* queue = createQueue();
 
 	char command;
 	while (1) {
@@ -20,11 +17,11 @@ int main(void) {
 			int num;
 			printf("Number: ");
 			scanf("%d", &num);
-			push(stack, num);
+			enqueue(queue, num);
 		}
 			
 		else if (command == 'O') {
-			int output = pop(stack);
+			int output = dequeue(queue);
 			if (output == INT_MIN)
 				continue;
 			printf("%d\n", output);

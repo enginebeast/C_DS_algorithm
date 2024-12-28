@@ -12,7 +12,17 @@ typedef struct Stack {
 	list_ptr top;
 }Stack;
 
-//udf
+//UDF of stack
 Stack* createStack(void);
 void push(Stack* stack, int num);
 int pop(Stack* stack);
+
+//Queue node structure
+typedef struct Queue {
+	list_ptr front, rear;
+}Queue;
+
+//UDF of queue
+Queue* createQueue(void);
+void enqueue(Queue* queue, int num);
+int dequeue(Queue* queue);
