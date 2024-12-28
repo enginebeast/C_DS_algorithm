@@ -1,26 +1,42 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include "array.h"	//swap, bubbleSort, selectSort, insertSort
+#include <stdlib.h>
+#include "list.h"
 
-//Data structure
+//List node structure
 
 
 //udf
 
 
 int main(void) {
-	//Input
-	FILE* fp;
-	int N, array[100];
-	fp = fopen("array.txt", "r");
-	fscanf(fp, "%d", &N);
-	for (int i = 0; i < N; i++)
-		fscanf(fp, "%d", &array[i]);
+	Stack* stack = createStack();
 
-	//Sort and print
-	selectSort(N, array);
-	for (int i = 0; i < N; i++)
-		printf("%d ", array[i]);
+	char command;
+	while (1) {
+		printf("Command: ");
+		scanf(" %c", &command);
+		if (command == 'I') {
+			int num;
+			printf("Number: ");
+			scanf("%d", &num);
+			push(stack, num);
+		}
+			
+		else if (command == 'O') {
+			int output = pop(stack);
+			if (output == INT_MIN)
+				continue;
+			printf("%d\n", output);
+		}
+
+		//Break
+		else if (command == 'E')
+			break;
+		//Exception handler
+		else
+			printf("Incorrect input");
+	}
 
 	return 0;
 }
